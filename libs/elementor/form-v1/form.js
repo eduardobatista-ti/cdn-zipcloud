@@ -1,6 +1,6 @@
-//Aplica máscara a campo phone formulário elementor
+//Aplica máscara a campo phone formulário elementor 
 
-document.addEventListener("DOMContentLoaded", function() {
+function phone() {
     var phoneInput = document.getElementById('form-field-phone');
     var streetInput = document.getElementById('form-field-postal_code');
   
@@ -24,5 +24,5 @@ document.addEventListener("DOMContentLoaded", function() {
       phone = phone.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
       phoneInput.value = phone; // Define o valor sem a máscara
     });
-  });
+  };
   
