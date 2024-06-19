@@ -22,7 +22,11 @@ function minificarJS($arquivoEntrada, $arquivoSaida) {
 // Caminho para o arquivo JavaScript de entrada e saída
 $arquivoEntrada = '/home/zipcloudbr/web/cdn.zipcloud.com.br/public_html/ziper/libs/elementor/form-v1/form.js'; // Caminho completo para o arquivo JS
 $arquivoSaida = '/home/zipcloudbr/web/cdn.zipcloud.com.br/public_html/ziper/libs/elementor/form-v1/form.min.js'; // Caminho completo onde deseja salvar o arquivo minificado
+// Minifica o arquivo JavaScript
+minificarJS($arquivoEntrada, $arquivoSaida);
 
+$arquivoEntrada = '/home/zipcloudbr/web/cdn.zipcloud.com.br/public_html/ziper/libs/woocommerce/cart/cart.js'; // Caminho completo para o arquivo JS
+$arquivoSaida = '/home/zipcloudbr/web/cdn.zipcloud.com.br/public_html/ziper/libs/woocommerce/cart/cart.min.js'; // Caminho completo onde deseja salvar o arquivo minificado
 // Minifica o arquivo JavaScript
 minificarJS($arquivoEntrada, $arquivoSaida);
 
