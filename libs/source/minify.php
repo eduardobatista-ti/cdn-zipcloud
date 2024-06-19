@@ -1,5 +1,7 @@
 <?php
 
+$serverDIR = "/home/zipcloudbr/web/cdn.zipcloud.com.br/public_html/ziper/libs/"
+
 // Função para minificar um arquivo JavaScript
 function minificarJS($arquivoEntrada, $arquivoSaida) {
     // Lê o conteúdo do arquivo de entrada

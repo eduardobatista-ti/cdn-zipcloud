@@ -1,4 +1,4 @@
-function update_cart () {
+function update_cart() {
     // Função para atualizar o carrinho com debounce
     var updateCart = debounce(function() {
         var updateButton = document.querySelector('button[name="update_cart"]');
