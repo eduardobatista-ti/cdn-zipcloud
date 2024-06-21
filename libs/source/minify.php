@@ -1,21 +1,36 @@
 <?php
 
-$serverDIR = "/home/zipcloudbr/web/cdn.zipcloud.com.br/public_html/ziper/libs/"
-
-// Função para minificar um arquivo JavaScript
 function minificarJS($arquivoEntrada, $arquivoSaida) {
     // Lê o conteúdo do arquivo de entrada
     $js = file_get_contents($arquivoEntrada);
     
+    // Preservar strings e regex usando uma função callback
+    $js = preg_replace_callback(
+        '/(?:"[^"\\\\]*(?:\\\\.[^"\\\\]*)*"|\'[^\'\\\\]*(?:\\\\.[^\'\\\\]*)*\'|\/[^\/\\\\]*(?:\\\\.[^\/\\\\]*)*\/[gimsuy]*)/',
+        function($matches) {
+            // Substituir espaços internos e novas linhas dentro de strings e regex por placeholders
+            return preg_replace('/\s+/', ' ', $matches[0]);
+        },
+        $js
+    );
+
     // Remove comentários de várias linhas (/* ... */)
     $js = preg_replace('!/\*.*?\*/!s', '', $js);
     
-    // Remove comentários de uma linha (// ...)
-    $js = preg_replace('/\n\s*\/\/.*\n/', "\n", $js);
+    // Remove comentários de uma linha (// ...) que não estão dentro de strings ou regex
+    $js = preg_replace('/(^|[^\\\])\/\/.*$/m', '$1', $js);
     
-    // Remove espaços em branco, tabulações, quebras de linha, etc.
+    // Remove espaços em branco extras e quebras de linha
     $js = preg_replace('/\s+/', ' ', $js);
+    
+    // Remove espaços em branco ao redor de operadores e pontuações
     $js = preg_replace('/\s*([{};,:])\s*/', '$1', $js);
+    
+    // Remove espaços em branco ao redor de operadores aritméticos e lógicos
+    $js = preg_replace('/\s*([\+\-\*\/=&|<>!])\s*/', '$1', $js);
+    
+    // Remove espaços em branco ao redor de parênteses e colchetes
+    $js = preg_replace('/\s*([\(\)\[\]])\s*/', '$1', $js);
     
     // Escreve o conteúdo minificado no arquivo de saída
     file_put_contents($arquivoSaida, $js);

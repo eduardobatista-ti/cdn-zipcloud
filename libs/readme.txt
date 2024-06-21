@@ -1,0 +1,1 @@
+Copie a pasta minify.sh para a pasta public_html
